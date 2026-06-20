@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Graph Visualizer</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 20px; }
+        svg { border: 1px solid #ccc; margin-top: 20px; }
+        input, button { padding: 8px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔗 Graph Visualizer</h1>
+
+    <!-- Edge Form -->
+    <form id="edgeForm">
+        <input type="text" name="u" id="uInput" placeholder="Node U" required>
+        <input type="text" name="v" id="vInput" placeholder="Node V" required>
+        <button type="submit">Add Edge</button>
+    </form>
+
+    <!-- Graph Visualization -->
+    <svg id="graph" width="600" height="400"></svg>
+
+    <script>
+        const form = document.getElementById("edgeForm");
+        const svg = d3.select("#graph");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const u = document.getElementById("uInput").value;
+            const v = document.getElementById("vInput").value;
+            await fetch("/graphs/add_edge", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: "u=" + u + "&v=" + v
+            });
+            document.getElementById("uInput").value = "";
+            document.getElementById("vInput").value = "";
+            drawGraph();
+        });
+
+        async function drawGraph() {
+            const res = await fetch("/graphs/graph");
+            const data = await res.json();
+
+            svg.selectAll("*").remove(); // clear old graph
+            if (!data.nodes.length) return;
+
+            const simulation = d3.forceSimulation(data.nodes)
+                .force("link", d3.forceLink(data.links).id(d => d.id).distance(100))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append("g")
+                .selectAll("line")
+                .data(data.links)
+                .enter().append("line")
+                .attr("stroke", "black");
+
+            const node = svg.append("g")
+                .selectAll("circle")
+                .data(data.nodes)
+                .enter().append("circle")
+                .attr("r", 20)
+                .attr("fill", "lightblue")
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            const label = svg.append("g")
+                .selectAll("text")
+                .data(data.nodes)
+                .enter().append("text")
+                .attr("dy", 5)
+                .attr("text-anchor", "middle")
+                .text(d => d.id);
+
+            simulation.on("tick", () => {
+                link.attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node.attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                label.attr("x", d => d.x)
+                     .attr("y", d => d.y);
+            });
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        drawGraph(); // initial load
+    </script>
+</body>
+</html>

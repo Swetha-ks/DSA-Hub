@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DSA Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: #1e1e2f;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: #2c2c54;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .sidebar a {
+      color: #eee;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+    .sidebar a:hover {
+      background: #3a0ca3;
+    }
+    .main {
+      flex-grow: 1;
+      padding: 40px;
+    }
+    .welcome {
+      background: linear-gradient(135deg, #7209b7, #3a0ca3);
+      border-radius: 12px;
+      padding: 30px;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .tips {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .tip-card {
+      background: #2c2c54;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+    .tip-card:hover {
+      transform: translateY(-5px);
+    }
+    .tip-card i {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #f72585;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background: #1e1e2f;
+      color: #aaa;
+      text-align: center;
+      border-radius: 12px 12px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4 class="text-light">DSA Hub</h4>
+    <a href="/arrays/"><i class="bi bi-table"></i> Arrays</a>
+    <a href="/stack/"><i class="bi bi-stack"></i> Stack</a>
+    <a href="/queue/"><i class="bi bi-list-ol"></i> Queue</a>
+    <a href="/playlist/"><i class="bi bi-music-note-list"></i> Linked List</a>
+    <a href="/trees/"><i class="bi bi-diagram-3"></i> Trees</a>
+    <a href="/graphs/"><i class="bi bi-diagram-2"></i> Graphs</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Welcome Section -->
+    <div class="welcome">
+      <h1>🌌 Welcome to Your DSA Hub</h1>
+      <p class="lead">Your interactive space to learn, practice, and visualize Data Structures & Algorithms.</p>
+    </div>
+
+    <!-- Tips / Resources Section -->
+    <h3>Quick Tips & Resources</h3>
+    <div class="tips">
+      <!-- About This Hub FIRST -->
+      <div class="tip-card text-center">
+        <i class="bi bi-house-heart"></i>
+        <h5>About This Hub</h5>
+        <p>This hub was built to unify all your DSA apps in one place, making it easy to navigate and showcase.</p>
+      </div>
+      <!-- Learn Step by Step -->
+      <div class="tip-card text-center">
+        <i class="bi bi-lightbulb"></i>
+        <h5>Learn Step by Step</h5>
+        <p>Start with Arrays, then move to Stacks and Queues before tackling Trees and Graphs.</p>
+      </div>
+      <!-- Practice Coding -->
+      <div class="tip-card text-center">
+        <i class="bi bi-code-slash"></i>
+        <h5>Practice Coding</h5>
+        <p>Try writing small Python snippets alongside each visualization to reinforce concepts.</p>
+      </div>
+      <!-- Track Your Journey -->
+      <div class="tip-card text-center">
+        <i class="bi bi-journal-check"></i>
+        <h5>Track Your Journey</h5>
+        <p>Maintain notes or a GitHub repo documenting what you’ve learned in each module.</p>
+      </div>
+      <!-- Explore Further -->
+      <div class="tip-card text-center">
+        <i class="bi bi-globe"></i>
+        <h5>Explore Further</h5>
+        <p>Once comfortable, apply these structures in real projects like chat apps or simulations.</p>
+      </div>
+      <!-- Did You Know -->
+      <div class="tip-card text-center">
+        <i class="bi bi-stars"></i>
+        <h5>Did You Know?</h5>
+        <p>Stacks and Queues are the backbone of scheduling systems — even your WhatsApp messages rely on them!</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Swetha | Data Structures & Algorithms Dashboard</p>
+    </footer>
+  </div>
+
+</body>
+</html>

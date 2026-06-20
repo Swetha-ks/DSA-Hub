@@ -1,0 +1,10 @@
+body {
+    background-color: #f3e8ff; /* soft lavender */
+}
+.card-header {
+    background-color: #b57edc; /* lavender purple */
+}
+.btn-success {
+    background-color: #9b59b6; /* deep lavender */
+    border: none;
+}
