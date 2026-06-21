@@ -1,6 +1,6 @@
 # Data Structures Web Applications
 
-An interactive learning platform built with **Python (Flask + Tkinter)** to demonstrate fundamental **data structures** through real-world web applications.  
+An interactive learning platform built with **Python (Flask)** to demonstrate fundamental **data structures** through real-world web applications.  
 Each data structure is implemented as a standalone project with a simple UI, allowing users to **interact, visualize, and understand** how these structures work.
 
 ---
